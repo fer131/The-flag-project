@@ -10,12 +10,18 @@ image = pygame.transform.scale(imp, consts.GRASS_SIZE)
 def random_grass():
 
 
+
+
     pass
 
 def draw_screen():
+    for i in range(consts.GRASS_NUMBER):
+        imp.imshow(imp, extent=[i, i+1,-i-1,-i])
+
 
     screen.fill(consts.GREEN)
     screen.blit(image, (0, 0))
+    screen.blit(image, (80,150))
     pygame.display.flip()
 while True:
     draw_screen()
