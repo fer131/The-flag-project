@@ -3,6 +3,7 @@ import consts
 
 state = {
     "player_pos": (),
-    "player_positions": [],
+    "player_body": [],
+    "player_legs": [],
     "state": consts.RUNNING_STATE,
 }
