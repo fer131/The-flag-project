@@ -31,7 +31,6 @@ def create_item(x, y):
     }
 
 def mine_placer(field):
-    counter = 0
     for i in range(0, consts.PLAYER_ITEM_HEIGHT):
         for j in range(consts.PLAYER_ITEM_WIDTH, consts.GRID_COLS - 2, 3):
             if random.randint(1, 100) <= consts.MINE_PERCENTAGE:
@@ -52,7 +51,6 @@ def mine_placer(field):
             if copy_grid[i][j]["mine"]:
                 for k in range(1, 3):
                     field[i][j + k]["mine"] = True
-    return counter
 
 
 create_grid()
