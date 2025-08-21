@@ -1,5 +1,14 @@
 import pygame
+
+import consts
+
+screen = pygame.display.set_mode((1000,500))
+
 def draw_screen():
-    screen = pygame.display.set_mode((900,450))
-    screen.fill("green")
-pygame.display.flip()
+
+    screen.fill(consts.GREEN)
+    pygame.display.flip()
+while True:
+    draw_screen()
+
+
