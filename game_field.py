@@ -55,8 +55,6 @@ def mine_placer(field):
     return counter
 
 
-
-
 create_grid()
 mine_placer(game_field)
 print(game_field)
