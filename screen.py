@@ -1,5 +1,5 @@
 import pygame
-
+import random
 import consts
 
 
@@ -8,23 +8,31 @@ imp = pygame.image.load("grass.png")
 image = pygame.transform.scale(imp, consts.GRASS_SIZE)
 
 def random_grass():
+    grass_positions=[]
+    for i in range(consts.GRASS_NUMBER):
+        x=random.randint(0,1000-consts.GRASS_SIZE[0])
+        y=random.randint(0,500-consts.GRASS_SIZE[1])
+        grass_positions.append((x,y))
+    return grass_positions
 
 
-
-
-    pass
 
 def draw_screen():
-    for i in range(consts.GRASS_NUMBER):
-        imp.imshow(imp, extent=[i, i+1,-i-1,-i])
-
-
     screen.fill(consts.GREEN)
-    screen.blit(image, (0, 0))
-    screen.blit(image, (80,150))
-    pygame.display.flip()
-while True:
-    draw_screen()
+    for pos in random_grass():
+        screen.blit(image,pos)
+        pygame.display.flip()
+running=True
+while running:
+
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            running=False
+
+        draw_screen()
+
+
+
 
 
 
