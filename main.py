@@ -20,11 +20,19 @@ def main():
     game_field.mine_placer(game_field.game_field)
     game_field.mine_indexes(state, game_field.game_field)
     game_field.flag_indexes(state)
-    print(state["flag_indexes"])
 
     while state["is_window_open"]:
         handle_user_events()
+
+        if game_field.touching_mine(state):
+            state["state"] = consts.LOSE_STATE
+            state["is_window_open"] = False
+        elif game_field.touching_mine(state):
+            state["state"] = consts.WIN_STATE
+            state["is_window_open"] = False
+
         soldier.player_pos_calc(state)
+        print(state["player_pos"])
         screen.draw_screen()
 
 def handle_user_events():

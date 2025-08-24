@@ -65,3 +65,16 @@ def flag_indexes(states):
     for i in range(consts.FLAG_ITEM_HEIGHT):
         for j in range(consts.FLAG_ITEM_WIDTH):
             states["flag_indexes"].append(tuple((start_pos[0] + j, start_pos[1] + i)))
+
+def touching_flag(states):
+    for pos in states["player_body"]:
+        if pos in states["flag_indexes"]:
+            return True
+    return False
+
+def touching_mine(states):
+    for pos in states["player_legs"]:
+        if pos in states["mine_indexes"]:
+            return True
+    return False
+

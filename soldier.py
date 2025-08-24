@@ -30,9 +30,9 @@ def soldier_right(states):
         states["player_pos"] = tuple((states["player_pos"][0] + 1, states["player_pos"][1]))
 def soldier_up(states):
     if states["player_pos"][1] > 0:
-        states["player_pos"] = tuple((states["player_pos"][0], states["player_pos"][1] + 1))
+        states["player_pos"] = tuple((states["player_pos"][0], states["player_pos"][1] - 1))
 def soldier_down(states):
     if states["player_pos"][1] < consts.GRID_ROWS:
-        states["player_pos"] = tuple((states["player_pos"][0], states["player_pos"][1] - 1))
+        states["player_pos"] = tuple((states["player_pos"][0], states["player_pos"][1] + 1))
 
 
