@@ -59,7 +59,6 @@ def get_flag_loc():
 
 def draw_flag(surface):
     pos = get_flag_loc()
-    print(pos)
     surface.blit(flag_img, pos)
 
 
