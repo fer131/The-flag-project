@@ -14,6 +14,9 @@ def player_pos_calc(states):
         for i in range(0, consts.PLAYER_ITEM_WIDTH):
             states["player_body"].append(tuple((current_x + i, current_y + j)))
     for i in range(2):
-        states["player_legs"].append(tuple((current_x + i, current_y + consts.PLAYER_ITEM_HEIGHT - 1)))
+        states["player_legs"].append(tuple((current_x + i,
+                                            current_y + consts.PLAYER_ITEM_HEIGHT - 1)))
 
+def player_topleft_pixel(pos):
+    return tuple((game_field.calc_x(pos[0], 0), game_field.calc_y(pos[1])))
 

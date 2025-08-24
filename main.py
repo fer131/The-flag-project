@@ -16,8 +16,7 @@ def main():
     while True:
         handle_user_events()
         soldier.player_pos_calc(state)
-        print(state["player_body"])
-        print(state["player_legs"])
+        print(soldier.player_topleft_pixel(state["player_pos"]))
 
 
 
