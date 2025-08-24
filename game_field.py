@@ -53,6 +53,28 @@ def mine_placer(field):
                     field[i][j + k]["mine"] = True
 
 
-create_grid()
-mine_placer(game_field)
-print(game_field)
+def mine_indexes(states, field):
+    for row in range(consts.GRID_ROWS):
+        for col in range(consts.GRID_COLS):
+            if field[row][col]["mine"]:
+                states["mine_indexes"].append(tuple((row, col)))
+
+def flag_indexes(states):
+    start_pos = (consts.GRID_COLS - consts.FLAG_ITEM_WIDTH,
+                 consts.GRID_ROWS - consts.FLAG_ITEM_HEIGHT)
+    for i in range(consts.FLAG_ITEM_HEIGHT):
+        for j in range(consts.FLAG_ITEM_WIDTH):
+            states["flag_indexes"].append(tuple((start_pos[0] + j, start_pos[1] + i)))
+
+def touching_flag(states):
+    for pos in states["player_body"]:
+        if pos in states["flag_indexes"]:
+            return True
+    return False
+
+def touching_mine(states):
+    for pos in states["player_legs"]:
+        if pos in states["mine_indexes"]:
+            return True
+    return False
+
