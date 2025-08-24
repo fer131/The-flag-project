@@ -28,13 +28,13 @@ def soldier_left(states):
     if states["player_pos"][1] > 0:
         states["player_pos"] = tuple((states["player_pos"][0], states["player_pos"][1] - 1))
 def soldier_right(states):
-    if states["player_pos"][1] < consts.GRID_COLS - 1:
+    if states["player_pos"][1] < consts.GRID_COLS - consts.PLAYER_ITEM_WIDTH:
         states["player_pos"] = tuple((states["player_pos"][0], states["player_pos"][1] + 1))
 def soldier_up(states):
     if states["player_pos"][0] > 0:
         states["player_pos"] = tuple((states["player_pos"][0] - 1, states["player_pos"][1]))
 def soldier_down(states):
-    if states["player_pos"][0] < consts.GRID_ROWS:
+    if states["player_pos"][0] < consts.GRID_ROWS - consts.PLAYER_ITEM_HEIGHT:
         states["player_pos"] = tuple((states["player_pos"][0] + 1, states["player_pos"][1]))
 
 

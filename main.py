@@ -18,14 +18,19 @@ def main():
     game_field.create_grid()
     game_field.mine_placer(game_field.game_field)
     game_field.mine_indexes(game_field.game_field)
-
+    game_field.flag_indexes(state)
 
     while state["is_window_open"]:
-        if state["state"] == consts.RUNNING_STATE:
-            handle_user_events()
 
+        handle_user_events()
+        print(state["player_body"])
+        print(state["flag_indexes"])
         if game_field.touching_mine(state):
             state["state"] = consts.LOSE_STATE
+            state["is_window_open"] = False
+
+        if game_field.touching_flag(state):
+            state["state"] = consts.WIN_STATE
             state["is_window_open"] = False
 
 
@@ -35,6 +40,7 @@ def main():
 
         if state["state"] == consts.SHOW_MINES:
             pygame.time.wait(1000)
+            pygame.event.clear()
             state["state"] = consts.RUNNING_STATE
 
 def handle_user_events():
