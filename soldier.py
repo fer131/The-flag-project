@@ -1,3 +1,5 @@
+from copy import deepcopy
+
 import pygame
 import consts
 import game_field
@@ -34,5 +36,7 @@ def soldier_up(states):
 def soldier_down(states):
     if states["player_pos"][0] < consts.GRID_ROWS:
         states["player_pos"] = tuple((states["player_pos"][0] + 1, states["player_pos"][1]))
+
+
 
 

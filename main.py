@@ -10,7 +10,7 @@ state = {
     "player_legs": [],
     "state": consts.RUNNING_STATE,
     "is_window_open": True,
-    "flag_indexes": [],
+    "flag_indexes": []
 }
 
 def main():
@@ -21,24 +21,29 @@ def main():
 
 
     while state["is_window_open"]:
-
-        handle_user_events()
+        if state["state"] == consts.RUNNING_STATE:
+            handle_user_events()
 
         if game_field.touching_mine(state):
             state["state"] = consts.LOSE_STATE
             state["is_window_open"] = False
 
+
         soldier.soldier_pos = state["player_pos"]
         soldier.player_pos_calc(state)
         screen.draw_screen(state)
 
+        if state["state"] == consts.SHOW_MINES:
+            pygame.time.wait(1000)
+            state["state"] = consts.RUNNING_STATE
+
 def handle_user_events():
     for event in pygame.event.get():
-
         if event.type == pygame.QUIT:
             state["is_window_open"] = False
-
         if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_RETURN:
+                state["state"] = consts.SHOW_MINES
             if event.key == pygame.K_LEFT:
                 soldier.soldier_left(state)
             if event.key == pygame.K_RIGHT:
@@ -47,7 +52,6 @@ def handle_user_events():
                 soldier.soldier_up(state)
             if event.key == pygame.K_DOWN:
                 soldier.soldier_down(state)
-            if event.key == pygame.K_RETURN:
-                state["state"] = consts.SHOW_MINES
+
 
 main()
