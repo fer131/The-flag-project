@@ -3,6 +3,7 @@ import random
 import copy
 
 game_field = []
+mine_index = []
 
 def create_grid():
     global game_field
@@ -53,11 +54,11 @@ def mine_placer(field):
                     field[i][j + k]["mine"] = True
 
 
-def mine_indexes(states, field):
+def mine_indexes(field):
     for row in range(consts.GRID_ROWS):
         for col in range(consts.GRID_COLS):
             if field[row][col]["mine"]:
-                states["mine_indexes"].append(tuple((row, col)))
+                mine_index.append(tuple((row, col)))
 
 def flag_indexes(states):
     start_pos = (consts.GRID_COLS - consts.FLAG_ITEM_WIDTH,
@@ -74,7 +75,7 @@ def touching_flag(states):
 
 def touching_mine(states):
     for pos in states["player_legs"]:
-        if pos in states["mine_indexes"]:
+        if pos in mine_index:
             return True
     return False
 
