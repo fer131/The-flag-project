@@ -53,6 +53,8 @@ def mine_placer(field):
                     field[i][j + k]["mine"] = True
 
 
-create_grid()
-mine_placer(game_field)
-print(game_field)
+def mine_indexes(states, field):
+    for row in range(consts.GRID_ROWS):
+        for col in range(consts.GRID_COLS):
+            if field[row][col]["mine"]:
+                states["mine_indexes"].append(tuple((row, col)))

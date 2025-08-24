@@ -2,21 +2,29 @@ import pygame
 import consts
 import soldier
 import game_field
+import screen
 
 state = {
-    "player_pos": (0, 0),
+    "player_pos": soldier.soldier_pos,
     "player_body": [],
     "player_legs": [],
     "state": consts.RUNNING_STATE,
-    "is_window_open": True
+    "is_window_open": True,
+    "flag_indexes": [],
+    "mine_indexes": []
 }
 
 def main():
     pygame.init()
-    while True:
+    game_field.create_grid()
+    game_field.mine_placer(game_field.game_field)
+    game_field.mine_indexes(state, game_field.game_field)
+
+    while state["is_window_open"]:
         handle_user_events()
         soldier.player_pos_calc(state)
-        print(soldier.player_topleft_pixel(state["player_pos"]))
+        screen.draw_screen()
+
 
 
 
@@ -28,13 +36,13 @@ def handle_user_events():
 
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_LEFT:
-                print("left")
+                soldier.soldier_left(state)
             if event.key == pygame.K_RIGHT:
-                print("right")
+                soldier.soldier_right(state)
             if event.key == pygame.K_UP:
-                print("up")
+                soldier.soldier_up(state)
             if event.key == pygame.K_DOWN:
-                print("down")
+                soldier.soldier_down(state)
 
 
 main()
