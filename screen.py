@@ -6,7 +6,8 @@ import soldier
 import game_field
 
 CELL = consts.SPACE_BETWEEN_ITEMS
-
+WIDTH = consts.WINDOW_WIDTH
+HEIGHT=consts.WINDOW_HEIGHT
 
 screen = pygame.display.set_mode((1000,500))
 
