@@ -11,6 +11,9 @@ HEIGHT=consts.WINDOW_HEIGHT
 
 screen = pygame.display.set_mode((1000,500))
 
+pygame.font.init()
+
+
 imp = pygame.image.load("grass.png")
 grass_img = pygame.transform.scale(imp, consts.GRASS_SIZE)
 
@@ -61,11 +64,26 @@ def draw_flag(surface):
     pos = get_flag_loc()
     surface.blit(flag_img, pos)
 
+def draw_message(message, font_size, color, location):
+    font = pygame.font.SysFont(consts.FONT_NAME, font_size)
+    text_img = font.render(message, True, color)
+    screen.blit(text_img, location)
 
+def draw_welcome_message():
+    draw_message(consts.WELCOME_MESSAGE,
+                 consts.WELCOME_MESSAGE_SIZE, "white", consts.WELCOME_MESSAGE_POS)
 
+def draw_lose_message():
+    draw_message(consts.LOSE_MESSAGE,
+                 consts.WIN_LOSE_MESSAGE_SIZE, "white", consts.LOSE_WIN_MESSAGE_POS)
+
+def draw_win_message():
+    draw_message(consts.WIN_MESSAGE,
+                 consts.WIN_LOSE_MESSAGE_SIZE, "white", consts.LOSE_WIN_MESSAGE_POS)
 
 def draw_screen(states):
     screen.fill(consts.GREEN)
+    draw_welcome_message()
 
     if states["state"] == consts.SHOW_MINES:
         screen.fill(consts.BLACK)
@@ -75,9 +93,19 @@ def draw_screen(states):
         for pos in grass_pos:
             screen.blit(grass_img, pos)
     draw_flag(screen)
-    screen.blit(soldier.soldier, soldier.player_topleft_pixel(soldier.soldier_pos))
 
+    if states["state"] == consts.LOSE_STATE:
+        draw_lose_message()
+
+    if states["state"] == consts.WIN_STATE:
+        draw_win_message()
+
+
+    screen.blit(soldier.soldier, soldier.player_topleft_pixel(soldier.soldier_pos))
     pygame.display.flip()
+    if states["state"] == consts.LOSE_STATE or states["state"] == consts.WIN_STATE:
+        pygame.time.wait(3000)
+        states["is_window_open"] = False
 
 
 

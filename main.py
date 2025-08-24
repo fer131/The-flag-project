@@ -27,11 +27,9 @@ def main():
 
         if game_field.touching_mine(state):
             state["state"] = consts.LOSE_STATE
-            state["is_window_open"] = False
 
         if game_field.touching_flag(state):
             state["state"] = consts.WIN_STATE
-            state["is_window_open"] = False
 
 
 
