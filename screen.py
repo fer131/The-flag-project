@@ -17,6 +17,10 @@ grass_img = pygame.transform.scale(imp, consts.GRASS_SIZE)
 mine = pygame.image.load("mine.png")
 mine_img = pygame.transform.scale(mine, consts.MINE_SIZE)
 
+flag=pygame.image.load("flag.png")
+flag_img = pygame.transform.scale(flag, consts.FLAG_SIZE)
+
+
 def random_grass():
     grass_positions=[]
     for i in range(consts.GRASS_NUMBER):
@@ -48,6 +52,19 @@ def draw_mines(field):
         counter_row += 1
 
 
+def get_flag_loc():
+    cell = (game_field.calc_x(consts.GRID_COLS - consts.FLAG_ITEM_WIDTH, 0),
+                              game_field.calc_y(consts.GRID_ROWS - consts.FLAG_ITEM_HEIGHT))
+    return cell
+
+def draw_flag(surface):
+    pos = get_flag_loc()
+    print(pos)
+    surface.blit(flag_img, pos)
+
+
+
+
 def draw_screen(states):
     screen.fill(consts.GREEN)
 
@@ -58,10 +75,8 @@ def draw_screen(states):
     else:
         for pos in grass_pos:
             screen.blit(grass_img, pos)
-
+    draw_flag(screen)
     screen.blit(soldier.soldier, soldier.player_topleft_pixel(soldier.soldier_pos))
-
-
 
     pygame.display.flip()
 
