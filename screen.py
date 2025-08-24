@@ -22,6 +22,7 @@ def draw_screen():
     for pos in random_grass():
         screen.blit(image,pos)
         pygame.display.flip()
+
 running=True
 while running:
 
@@ -30,6 +31,11 @@ while running:
             running=False
 
         draw_screen()
+
+pygame.quit()
+
+
+
 
 
 
