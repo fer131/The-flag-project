@@ -33,17 +33,32 @@ def create_item(x, y):
 
 def mine_placer(field):
     for i in range(0, consts.PLAYER_ITEM_HEIGHT):
-        for j in range(consts.PLAYER_ITEM_WIDTH, consts.GRID_COLS - 2, 3):
+        counter1 = consts.PLAYER_ITEM_WIDTH
+        while counter1 < consts.GRID_COLS - 2:
+        # for j in range(consts.PLAYER_ITEM_WIDTH, consts.GRID_COLS - 2, 3):
             if random.randint(1, 100) <= consts.MINE_PERCENTAGE:
-                field[i][j]["mine"] = True
+                field[i][counter1]["mine"] = True
+                counter1 += 3
+            else:
+                counter1 += 1
     for i in range(consts.PLAYER_ITEM_HEIGHT, consts.GRID_ROWS - consts.FLAG_ITEM_HEIGHT):
-        for j in range(0, consts.GRID_COLS - 2, 3):
+        counter2 = 0
+        while counter2 < consts.GRID_COLS - 2:
+        # for j in range(0, consts.GRID_COLS - 2, 3):
             if random.randint(1, 100) <= consts.MINE_PERCENTAGE:
-                field[i][j]["mine"] = True
+                field[i][counter2]["mine"] = True
+                counter2 += 3
+            else:
+                counter2 += 1
     for i in range(consts.GRID_ROWS - consts.FLAG_ITEM_HEIGHT, consts.GRID_ROWS):
-        for j in range(0, consts.GRID_COLS - consts.FLAG_ITEM_WIDTH - 2, 3):
+        counter3 = 0
+        while counter3 < consts.GRID_COLS - consts.FLAG_ITEM_WIDTH - 2:
+        # for j in range(0, consts.GRID_COLS - consts.FLAG_ITEM_WIDTH - 2, 3):
             if random.randint(1, 100) <= consts.MINE_PERCENTAGE:
-                field[i][j]["mine"] = True
+                field[i][counter3]["mine"] = True
+                counter3 += 3
+            else:
+                counter3 += 1
 
     copy_grid = copy.deepcopy(field)
 

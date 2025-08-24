@@ -21,6 +21,7 @@ def main():
     game_field.mine_indexes(game_field.game_field)
     game_field.flag_indexes(state)
 
+    print(len(game_field.mine_index) / 3)
     while state["is_window_open"]:
 
         handle_user_events()
