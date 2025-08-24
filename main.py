@@ -1,8 +1,10 @@
 import pygame
 import consts
+import soldier
+import game_field
 
 state = {
-    "player_pos": (),
+    "player_pos": (0, 0),
     "player_body": [],
     "player_legs": [],
     "state": consts.RUNNING_STATE,
@@ -13,6 +15,9 @@ def main():
     pygame.init()
     while True:
         handle_user_events()
+        soldier.player_pos_calc(state)
+        print(state["player_body"])
+        print(state["player_legs"])
 
 
 
