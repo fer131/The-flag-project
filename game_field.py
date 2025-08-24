@@ -58,3 +58,10 @@ def mine_indexes(states, field):
         for col in range(consts.GRID_COLS):
             if field[row][col]["mine"]:
                 states["mine_indexes"].append(tuple((row, col)))
+
+def flag_indexes(states):
+    start_pos = (consts.GRID_COLS - consts.FLAG_ITEM_WIDTH,
+                 consts.GRID_ROWS - consts.FLAG_ITEM_HEIGHT)
+    for i in range(consts.FLAG_ITEM_HEIGHT):
+        for j in range(consts.FLAG_ITEM_WIDTH):
+            states["flag_indexes"].append(tuple((start_pos[0] + j, start_pos[1] + i)))
