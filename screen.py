@@ -100,7 +100,6 @@ def draw_screen(states):
     if states["state"] == consts.WIN_STATE:
         draw_win_message()
 
-
     screen.blit(soldier.soldier, soldier.player_topleft_pixel(soldier.soldier_pos))
     pygame.display.flip()
     if states["state"] == consts.LOSE_STATE or states["state"] == consts.WIN_STATE:

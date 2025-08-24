@@ -22,7 +22,7 @@ def player_pos_calc(states):
                                             current_col + i)))
 
 def player_topleft_pixel(pos):
-    return tuple((game_field.calc_x(pos[1], 0), game_field.calc_y(pos[0])))
+    return tuple((game_field.calc_x(pos[1], 0) - 10, game_field.calc_y(pos[0])))
 
 def soldier_left(states):
     if states["player_pos"][1] > 0:
