@@ -72,12 +72,14 @@ def mine_placer(field):
 
 
 def mine_indexes(field):
+    global mine_index
     for row in range(consts.GRID_ROWS):
         for col in range(consts.GRID_COLS):
             if field[row][col]["mine"]:
                 mine_index.append(tuple((row, col)))
 
 def flag_indexes():
+    global flag_index
     start_pos = (consts.GRID_ROWS - consts.FLAG_ITEM_HEIGHT,
                  consts.GRID_COLS - consts.FLAG_ITEM_WIDTH)
     for i in range(consts.FLAG_ITEM_HEIGHT):
