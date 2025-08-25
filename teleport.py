@@ -12,7 +12,7 @@ def trap_placer(field):
     trap_count = consts.TRAP_COUNT
     while trap_count > 0:
         can_place = True
-        random_row = random.randint(3, 19)
+        random_row = random.randint(4, 20)
         random_col = random.randint(0, consts.GRID_COLS - 4)
 
         for i in range(3):

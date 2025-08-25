@@ -47,7 +47,7 @@ def main():
         if state["state"] == consts.SHOW_MINES:
             pygame.time.wait(1000)
             pygame.event.clear()
-            # state["was_pressed"] = True
+            state["was_pressed"] = True
 
             state["state"] = consts.RUNNING_STATE
 
@@ -89,3 +89,4 @@ def handle_user_events():
 
 
 main()
+
