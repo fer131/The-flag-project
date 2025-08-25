@@ -73,6 +73,7 @@ def mine_placer(field):
 
 def mine_indexes(field):
     global mine_index
+    mine_index = []
     for row in range(consts.GRID_ROWS):
         for col in range(consts.GRID_COLS):
             if field[row][col]["mine"]:

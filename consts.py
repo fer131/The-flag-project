@@ -1,3 +1,4 @@
+import pygame
 
 RUNNING_STATE = 1
 LOSE_STATE = 2
@@ -49,4 +50,14 @@ WINDOW_HEIGHT= GRID_ROWS*SPACE_BETWEEN_ITEMS
 MINE_COUNT=20
 MINE_LINE=3
 
-
+KEYS_DICT = {
+    pygame.K_1: 1,
+    pygame.K_2: 2,
+    pygame.K_3: 3,
+    pygame.K_4: 4,
+    pygame.K_5: 5,
+    pygame.K_6: 6,
+    pygame.K_7: 7,
+    pygame.K_8: 8,
+    pygame.K_9: 9
+}

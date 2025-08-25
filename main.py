@@ -3,6 +3,7 @@ import consts
 import soldier
 import game_field
 import screen
+import database
 
 state = {
     "player_pos": soldier.soldier_pos,
@@ -23,13 +24,13 @@ def main():
     while state["is_window_open"]:
 
         handle_user_events()
+        game_field.mine_indexes(game_field.game_field)
 
         if game_field.touching_mine(state):
             state["state"] = consts.LOSE_STATE
 
         if game_field.touching_flag(state):
             state["state"] = consts.WIN_STATE
-
 
 
         soldier.soldier_pos = state["player_pos"]
@@ -40,10 +41,12 @@ def main():
             pygame.time.wait(1000)
             pygame.event.clear()
             state["was_pressed"] = True
+
             state["state"] = consts.RUNNING_STATE
 
 
 def handle_user_events():
+    global time_down
     for event in pygame.event.get():
 
         if event.type == pygame.QUIT:
@@ -60,6 +63,22 @@ def handle_user_events():
                 soldier.soldier_up(state)
             if event.key == pygame.K_DOWN:
                 soldier.soldier_down(state)
+            if event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6,
+                             pygame.K_7, pygame.K_8, pygame.K_9
+                             ]:
+                time_down = pygame.time.get_ticks()
+        if event.type == pygame.KEYUP:
+            if event.key in [pygame.K_1, pygame.K_2, pygame.K_3, pygame.K_4, pygame.K_5, pygame.K_6,
+                             pygame.K_7, pygame.K_8, pygame.K_9
+                             ]:
+                press_time = (pygame.time.get_ticks() - time_down) / 1000
+                key = consts.KEYS_DICT[event.key]
+                if press_time < 1:
+                    database.load_game(key, state)
+                else:
+                    database.save_game(key, state, screen.grass_pos, game_field.game_field)
+
+
 
 
 main()

@@ -38,3 +38,38 @@ def soldier_down(states):
 
 
 
+
+# key_press_times ={}
+#
+# def handle_user_event():
+#     for event in pygame.event.get():
+#         if event.type == pygame.QUIT:
+#             state["is_window_open"]=False
+#
+#         if event.type==pygame.KEYDOWN:
+#             if event.key in [pygame.K_1,pygame.K_2,pygame.K_3,pygame.K_4,pygame.K_5,pygame.K_6,
+#                              pygame.K_7,pygame.K_8,pygame.K_9
+#                              ]:
+#                 key_press_times[event.key] = pygame.time.get_ticks()
+#
+#
+#         if event.type == pygame.KEYUP:
+#             if event.key in key_press_times:
+#                 press_time=pygame.time.get_ticks()-key_press_times[event.key]
+#                 numbers_1_to_9=int(pygame.key.name(event.key))
+#
+#                 if press_time<1000:
+#                     print(numbers_1_to_9)
+#                     # loaded_case=database.load_game(numbers_1_to_9)
+#                 #     if loaded_case:
+#                 #         state.update(loaded_case)
+#                 # else:
+#                 #     print(numbers_1_to_9)
+#                 #     # database.save_game(numbers_1_to_9,state)
+#                 #
+#                 # del key_press_times[event.key]
+# handle_user_event()
+
+
+
+
