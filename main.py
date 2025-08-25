@@ -22,13 +22,12 @@ def main():
     game_field.mine_placer(game_field.game_field)
     game_field.flag_indexes()
     teleport.trap_placer(game_field.game_field)
-    print(teleport.trap_positions)
-    print(teleport.traps)
 
     while state["is_window_open"]:
 
         handle_user_events()
         game_field.mine_indexes(game_field.game_field)
+        teleport.trap_indexes(teleport.traps)
 
         if teleport.touching_trap(state):
             teleport.random_teleport(state)
@@ -47,7 +46,7 @@ def main():
         if state["state"] == consts.SHOW_MINES:
             pygame.time.wait(1000)
             pygame.event.clear()
-            state["was_pressed"] = True
+            # state["was_pressed"] = True
 
             state["state"] = consts.RUNNING_STATE
 
@@ -83,7 +82,7 @@ def handle_user_events():
                 if press_time < 1:
                     database.load_game(key, state)
                 else:
-                    database.save_game(key, state, screen.grass_pos, game_field.game_field)
+                    database.save_game(key, state, screen.grass_pos, game_field.game_field, teleport.traps)
 
 
 

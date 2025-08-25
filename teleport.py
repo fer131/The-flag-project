@@ -24,9 +24,13 @@ def trap_placer(field):
             for i in range(3):
                 field[random_row][random_col + i]["trap"] = True
                 trap_list.append(tuple((random_row, random_col + i)))
-                trap_positions.append(tuple((random_row, random_col + i)))
             traps.append(trap_list)
             trap_count -= 1
+
+def trap_indexes(trap_list):
+    for trap in trap_list:
+        for index in trap:
+            trap_positions.append(index)
 
 def touching_trap(states):
     for pos in states["player_legs"]:
