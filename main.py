@@ -3,7 +3,7 @@ import consts
 import soldier
 import game_field
 import screen
-
+sjshjs
 state = {
     "player_pos": soldier.soldier_pos,
     "player_body": [],
