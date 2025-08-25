@@ -4,6 +4,8 @@ import soldier
 import game_field
 import screen
 import database
+import teleport
+
 
 state = {
     "player_pos": soldier.soldier_pos,
@@ -19,11 +21,17 @@ def main():
     game_field.create_grid()
     game_field.mine_placer(game_field.game_field)
     game_field.flag_indexes()
+    teleport.trap_placer(game_field.game_field)
+    print(teleport.trap_positions)
+    print(teleport.traps)
 
     while state["is_window_open"]:
 
         handle_user_events()
         game_field.mine_indexes(game_field.game_field)
+
+        if teleport.touching_trap(state):
+            teleport.random_teleport(state)
 
         if game_field.touching_mine(state):
             state["state"] = consts.LOSE_STATE
@@ -39,7 +47,7 @@ def main():
         if state["state"] == consts.SHOW_MINES:
             pygame.time.wait(1000)
             pygame.event.clear()
-            state["was_pressed"] = True
+            # state["was_pressed"] = True
 
             state["state"] = consts.RUNNING_STATE
 

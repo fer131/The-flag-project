@@ -61,3 +61,5 @@ KEYS_DICT = {
     pygame.K_8: 8,
     pygame.K_9: 9
 }
+
+TRAP_COUNT = 5

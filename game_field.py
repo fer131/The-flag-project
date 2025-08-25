@@ -31,7 +31,7 @@ def create_item(x, y):
         "x": x,
         "y": y,
         "mine": False,
-        "teleport": False
+        "trap": False
     }
 
 def mine_placer(field):

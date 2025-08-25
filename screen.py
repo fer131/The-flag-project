@@ -3,6 +3,7 @@ import random
 import consts
 import soldier
 import game_field
+import teleport
 
 CELL = consts.SPACE_BETWEEN_ITEMS
 WIDTH = consts.WINDOW_WIDTH
@@ -53,6 +54,18 @@ def draw_mines(field):
                 counter_col += 1
         counter_row += 1
 
+def draw_traps(field):
+    counter_row = 0
+    while counter_row < consts.GRID_ROWS:
+        counter_col = 0
+        while counter_col < consts.GRID_COLS:
+            if field[counter_row][counter_col]["trap"]:
+                screen.blit(teleport.trap_img, (field[counter_row][counter_col]["x"], field[counter_row][counter_col]["y"]))
+                counter_col += 3
+            else:
+                counter_col += 1
+        counter_row += 1
+
 
 def get_flag_loc():
     cell = (game_field.calc_x(consts.GRID_COLS - consts.FLAG_ITEM_WIDTH, 0),
@@ -88,6 +101,7 @@ def draw_screen(states):
         screen.fill(consts.BLACK)
         draw_grid(screen)
         draw_mines(game_field.game_field)
+        draw_traps(game_field.game_field)
     else:
         for pos in grass_pos:
             screen.blit(grass_img, pos)
