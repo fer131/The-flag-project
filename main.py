@@ -18,7 +18,6 @@ def main():
     pygame.init()
     game_field.create_grid()
     game_field.mine_placer(game_field.game_field)
-    game_field.mine_indexes(game_field.game_field)
     game_field.flag_indexes()
 
     while state["is_window_open"]:
