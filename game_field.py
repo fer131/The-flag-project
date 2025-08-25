@@ -6,6 +6,7 @@ game_field = []
 mine_index = []
 flag_index = []
 
+
 def create_grid():
     global game_field
     game_field =[

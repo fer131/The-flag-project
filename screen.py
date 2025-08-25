@@ -1,6 +1,5 @@
 import pygame
 import random
-from pygame.examples.moveit import WIDTH, HEIGHT
 import consts
 import soldier
 import game_field
