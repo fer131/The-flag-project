@@ -10,7 +10,6 @@ state = {
     "player_legs": [],
     "state": consts.RUNNING_STATE,
     "is_window_open": True,
-    "flag_indexes": [],
     "was_pressed": False
 }
 
@@ -19,7 +18,7 @@ def main():
     game_field.create_grid()
     game_field.mine_placer(game_field.game_field)
     game_field.mine_indexes(game_field.game_field)
-    game_field.flag_indexes(state)
+    game_field.flag_indexes()
 
     while state["is_window_open"]:
 

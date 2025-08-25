@@ -4,6 +4,7 @@ import copy
 
 game_field = []
 mine_index = []
+flag_index = []
 
 def create_grid():
     global game_field
@@ -75,16 +76,16 @@ def mine_indexes(field):
             if field[row][col]["mine"]:
                 mine_index.append(tuple((row, col)))
 
-def flag_indexes(states):
+def flag_indexes():
     start_pos = (consts.GRID_ROWS - consts.FLAG_ITEM_HEIGHT,
                  consts.GRID_COLS - consts.FLAG_ITEM_WIDTH)
     for i in range(consts.FLAG_ITEM_HEIGHT):
         for j in range(consts.FLAG_ITEM_WIDTH):
-            states["flag_indexes"].append(tuple((start_pos[0] + i, start_pos[1] + j)))
+            flag_index.append(tuple((start_pos[0] + i, start_pos[1] + j)))
 
 def touching_flag(states):
     for pos in states["player_body"]:
-        if pos in states["flag_indexes"]:
+        if pos in flag_index:
             return True
     return False
 
