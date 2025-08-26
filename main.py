@@ -1,5 +1,6 @@
 import pygame
 import consts
+import guard
 import soldier
 import game_field
 import screen
@@ -22,12 +23,17 @@ def main():
     game_field.mine_placer(game_field.game_field)
     game_field.flag_indexes()
     teleport.trap_placer(game_field.game_field)
+    guard.guard_start(guard.guard_state)
 
     while state["is_window_open"]:
 
         handle_user_events()
         game_field.mine_indexes(game_field.game_field)
         teleport.trap_indexes(teleport.traps)
+
+        guard.guard_move(guard.guard_state)
+
+        guard.guard_positions(guard.guard_state)
 
         if teleport.touching_trap(state):
             teleport.random_teleport(state)
@@ -38,10 +44,13 @@ def main():
         if game_field.touching_flag(state):
             state["state"] = consts.WIN_STATE
 
+        if guard.touching_guard(state, guard.guard_state):
+            state["state"] = consts.LOSE_STATE
+
 
         soldier.soldier_pos = state["player_pos"]
         soldier.player_pos_calc(state)
-        screen.draw_screen(state)
+        screen.draw_screen(state, guard.guard_state)
 
         if state["state"] == consts.SHOW_MINES:
             pygame.time.wait(1000)

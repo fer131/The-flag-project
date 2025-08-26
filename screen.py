@@ -1,6 +1,7 @@
 import pygame
 import random
 import consts
+import guard
 import soldier
 import game_field
 import teleport
@@ -93,7 +94,7 @@ def draw_win_message():
     draw_message(consts.WIN_MESSAGE,
                  consts.WIN_LOSE_MESSAGE_SIZE, "white", consts.LOSE_WIN_MESSAGE_POS)
 
-def draw_screen(states):
+def draw_screen(states, guard_state):
     screen.fill(consts.GREEN)
     draw_welcome_message()
 
@@ -114,6 +115,7 @@ def draw_screen(states):
         draw_win_message()
 
     screen.blit(soldier.soldier, soldier.player_topleft_pixel(soldier.soldier_pos))
+    screen.blit(guard.guard_img, guard.guard_topleft_pixel(guard_state))
     pygame.display.flip()
     if states["state"] == consts.LOSE_STATE or states["state"] == consts.WIN_STATE:
         pygame.time.wait(3000)
