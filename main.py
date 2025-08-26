@@ -24,14 +24,16 @@ def main():
     game_field.flag_indexes()
     teleport.trap_placer(game_field.game_field)
     guard.guard_start(guard.guard_state)
+    iteration = 0
 
     while state["is_window_open"]:
-
         handle_user_events()
         game_field.mine_indexes(game_field.game_field)
         teleport.trap_indexes(teleport.traps)
 
-        guard.guard_move(guard.guard_state)
+        if iteration == 6:
+            guard.guard_move(guard.guard_state)
+            iteration = 0
 
         guard.guard_positions(guard.guard_state)
 
@@ -58,6 +60,8 @@ def main():
             state["was_pressed"] = True
 
             state["state"] = consts.RUNNING_STATE
+
+        iteration += 1
 
 
 def handle_user_events():
