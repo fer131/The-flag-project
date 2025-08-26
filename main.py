@@ -20,8 +20,8 @@ state = {
 def main():
     pygame.init()
     game_field.create_grid()
-    game_field.mine_placer(game_field.game_field)
     game_field.flag_indexes()
+    game_field.mine_placer(game_field.game_field)
     teleport.trap_placer(game_field.game_field)
     guard.guard_start(guard.guard_state)
     iteration = 0
