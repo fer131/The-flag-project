@@ -93,9 +93,9 @@ def handle_user_events():
                 press_time = (pygame.time.get_ticks() - time_down) / 1000
                 key = consts.KEYS_DICT[event.key]
                 if press_time < 1:
-                    database.load_game(key, state)
+                    database.load_game(key, state, guard.guard_state)
                 else:
-                    database.save_game(key, state, screen.grass_pos, game_field.game_field, teleport.traps)
+                    database.save_game(key, state, screen.grass_pos, game_field.game_field, teleport.traps, guard.guard_state)
 
 
 
