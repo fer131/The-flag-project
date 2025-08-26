@@ -33,4 +33,3 @@ def load_game(num, states, guard):
     teleport.traps =  eval(df.loc[row_num, "traps"])
     guard["guard_pos"] = eval(df.loc[row_num, "guard_pos"])
     guard["guard_direction"] = df.loc[row_num, "guard_direction"]
-
